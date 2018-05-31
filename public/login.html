@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat Service | Login</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+ <body>
+    <header>
+        <div class="container">
+         <div id="branding">
+            <h1><span class="highlight"> Lamin's</span> Chat</h1>
+        </div>
+        <nav>
+            <ul>
+              <li><a href="index.html">Home</a> </li>  
+              <li class="current"> <a href="login.html">Login</a> </li>  
+              <li> <a href="register.html">Register</a> </li>  
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<section id="main">
+    <div class="container">
+       
+        <form method="POST" action="login">
+            <label>
+              <input id="username" type="text" name="username" required />
+              <div class="label-text">Username</div>
+            </label>
+            <label>
+              <input id="password" type="password" name="password" required />
+              <div class="label-text">Password</div>
+            </label>
+            <button id="loginButton">Login</button>
+          </form>
+
+          <div id="valid"></div>
+        <div id="notValid"></div>
+          
+    </div>
+</section> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="clientSideJavascript.js"> </script> 
+
+
+     <footer>
+        <p>Chat Service, Copyright &copy; 2018</p>
+     </footer>
+        
+    </body>
+</html> 
+
+

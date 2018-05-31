@@ -1,0 +1,336 @@
+.mainB{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    background-color:#f4f4f4; 
+}
+
+/* Global */
+.container{
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+ul{
+    margin: 0;
+    padding: 0;
+}
+.button_1{
+    height: 38px;
+    background: #e8491d;
+    border: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #fff;
+
+}
+
+/* Header */
+header{
+    background: #35424a;
+    color: #fff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #e8491d 3px solid;
+}
+
+header a{
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header li{
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+header #branding{
+    float: left;
+}
+header #branding h1{
+    margin: 0;
+}
+header nav{
+    float: right;
+    margin-top: 10px;
+}
+
+header .highlight, header .current a{
+    color:#e8491d;
+    font-weight: bold;
+}
+header a:hover{
+    color: #ccc;
+    font-weight: bold
+}
+
+/* Showcase*/
+#showcase{
+    min-height: 400px;
+    background: url('../images/chat.jpg') no-repeat;
+    text-align: center;
+
+}
+#showcase h1{
+    margin-top: 50px;
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+#showcase p{
+    font-size: 20px;
+}
+#newsletter{
+    padding: 15px;
+    color: #fff;
+    background: #35424a;
+}
+#newsletter h1{
+    float: left;
+}
+#newsletter form{
+    float: right;
+    margin-top: 15px;
+}
+#newsletter input[type="email"]{
+    padding: 4px;
+    height: 25px;
+    width: 250px;
+}
+
+/*Boxes*/
+#boxes{
+    margin-top: 20px;
+}
+#boxes .box{
+    float: left;
+    text-align: center;
+    width: 30%;
+    padding: 10px
+}
+#boxes .box img{
+    width: 200px;
+}
+footer{
+    padding: 20px;
+    margin-top: 20px;
+    color: #fff;
+    background-color: #e8491d;
+    text-align: center;
+}
+@media(max-width:768px){
+    header #branding, header nav, header nav li,
+    #newsletter h1, #newsletter form, #boxes.box{
+        float: none;
+        text-align: center;
+        width: 100%;
+    }
+    header{
+        padding-bottom: 20px; 
+    }
+    #showcase h1{
+        margin-top: 40px;
+    }
+    #newsletter button{
+        display: block;
+        width: 100%;
+    }
+    #newsletter form input[type="email"]{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+}
+
+
+/* Login*/
+
+body {
+    background-color: #333333;
+    font-family: "Open Sans", Helvetica;
+  }
+  .chatbody {
+    background-color: #fff;
+    font-family: "Open Sans", Helvetica;
+  }
+  .parag{
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  form {
+    text-align: center;
+  }
+  
+  label {
+    display: block;
+    letter-spacing: 3px;
+    padding-top: 30px;
+    text-align: center;
+  }
+  label .label-text {
+    color: #9B9B9B;
+    cursor: text;
+    font-size: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+    -moz-transform: translateY(-34px);
+    -ms-transform: translateY(-34px);
+    -webkit-transform: translateY(-34px);
+    transform: translateY(-34px);
+    transition: all 0.2s;
+  }
+  label input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #4A4A4A;
+    color: white;
+    font-size: 36px;
+    letter-spacing: -1px;
+    outline: 0;
+    padding: 5px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    width: 200px;
+  }
+  label input:focus {
+    max-width: 100%;
+    width: 400px;
+  }
+  label input:focus + .label-text {
+    color: #F0F0F0;
+    font-size: 13px;
+    -moz-transform: translateY(-74px);
+    -ms-transform: translateY(-74px);
+    -webkit-transform: translateY(-74px);
+    transform: translateY(-74px);
+  }
+  label input:valid + .label-text {
+    font-size: 13px;
+    -moz-transform: translateY(-74px);
+    -ms-transform: translateY(-74px);
+    -webkit-transform: translateY(-74px);
+    transform: translateY(-74px);
+  }
+  
+  button {
+    background-color: #333333;
+    border: 2px solid white;
+    border-radius: 27px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 20px;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    transition: all 200ms;
+  }
+  #loginButton {
+    background-color: #333333;
+    border: 2px solid white;
+    border-radius: 27px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 20px;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    transition: all 200ms;
+  }
+  #loginButton:hover, button:focus {
+    background-color: white;
+    color: #333333;
+    outline: 0;
+  }
+  button:hover, button:focus {
+    background-color: white;
+    color: #333333;
+    outline: 0;
+  }
+  .page-header{
+      text-align: center;
+    
+  }
+
+  /*Chat*/
+
+  #chat {
+    height: 300px;
+
+}
+#usernameWrapper{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+#contentWrap {
+    display: none;
+    margin-bottom: 10;
+}
+
+#chatWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -150px;
+    z-index: 15;
+    border: 2px #e8491d solid;
+    padding: 5px;
+    width: 400px;
+
+}
+
+.input {
+    border: 1px;
+    border-radius: 2px;
+    -webkit-appearance: none;
+}
+
+.chathead {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#nickname {
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: .3s;
+}
+
+#nickname:focus {
+    border-color: #e8491d;
+    box-shadow: 0 0 8px 0 #e8491d;
+
+}
+
+input[type=submit] {
+    background-color: #333333;
+    border: 2px solid white;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 20px;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    transition: all 200ms;
+}
+
+#message {
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: .3s;
+}
+
