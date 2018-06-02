@@ -15,9 +15,17 @@ $(document).ready(function () {
 
             $('#valid').empty();
             $('#notValid').html('Please fill out all fields!');
-
+        }
+        
+        if(password !== passwordMatch){
+            $('#valid').empty();
+            $('#notValid').html('Passwords do not match!');
+        }
+        if(fullname.length < 3){
+            $('#notValid').html('Fullname must be at least 3 chars');
 
         }
+       
         else {
             console.log('Making sure you are ' + fullname);
 
@@ -27,7 +35,7 @@ $(document).ready(function () {
                 email: email,
                 password: password,
                 passwordMatch: passwordMatch,
-                username: username,
+                username: username
 
             };
             console.log("The data: " + data);
@@ -43,8 +51,12 @@ $(document).ready(function () {
                 }
             });
 
-            $("#valid").html("✔ Registration complete")
+            $("#valid").html("✔ User Registered! ")
             $('#notValid').empty();
+            response.redirect('/login');
+
+            
+            
 
         }
 
@@ -54,6 +66,11 @@ $(document).ready(function () {
 
         var username = $("#username").val();
         var password = $("#password").val();
+
+        if (username == "" || password == "" ) {
+            $('#valid').empty();
+            $('#notValid').html('Please enter username and password');
+        }
 
         var loginData = { "username": username, "password": password };
 

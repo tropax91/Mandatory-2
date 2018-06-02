@@ -254,6 +254,9 @@ body {
       text-align: center;
     
   }
+  #notValid, #valid{
+      color: #fff;
+  }
 
   /*Chat*/
 

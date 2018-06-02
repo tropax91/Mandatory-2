@@ -3,8 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongo = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const server = require('http').Server(app);
 const io = require("socket.io")(server);
@@ -110,7 +111,8 @@ app.post('/login', function(req, res) {
 
             if(user === null) {
                 console.log('User doesn´t exist!')
-                
+                res.redirect('/login');
+
             }
 
            else if(user.username === req.body.username && user.password === req.body.password) {
@@ -123,38 +125,24 @@ app.post('/login', function(req, res) {
             }
             
             else {
-                return res.json({error:"No user found!"});
+                console.log('Username or password do not match');
+                res.redirect('/login');
+
                 
                 
             }
-        })
-    })
-})
+        });
+    });
+});
 
 //Registration
 app.post('/register', function(req, res) {
 
     var data = req.body; //bodyParser at work, makes this work
+    var password = req.body.password;
     console.log(data);
 
-    if(!req.body.fullname || !req.body.email || !req.body.password || !req.body.passwordMatch || !req.body.username) 
-        return res.json({error: 'Please fill out all fields!'});
-
-    if(db.users.get(req.body.username))
-        return res.json({error: 'This username has already been registered'});
-
-    if(req.body.username.length > 15 || req.body.password.length > 20)
-        return res.json({error: 'Username or Password is too long'});
-
-    if(req.body.password !== req.body.passwordMatch){
-            var err = new Error('Passwords do not match.');
-            err.status = 400;
-            res.send('Passwords do not match');
-        }
-
-           
-    
-
+   
     mongo.connect(path, function(err, db) {
         if(err) {
             console.log("Error connecting to mongodb: ", err);
@@ -163,20 +151,21 @@ app.post('/register', function(req, res) {
 
         let collection = db.collection('users'); //insertion, table name
 
-        collection.insert(data, function(err, success) {
-            console.log(success);
-            db.close();
-            
+        bcrypt.genSalt(saltRounds, function(err, salt) {
+            bcrypt.hash(password, salt, function(err, hash){
+                if(err) throw err;
+
+                collection.insert(data, function(err, success) {
+                    console.log(success);
+                    db.close();
+                    
+                });  
+            });
+                
         });
+          
 
-        bcrypt.genSalt(10, (err, salt) => {
-            if (err) return res.json({error:'Salt failed.'});
-            bcrypt.hash(req.body.password, salt, null, (err, hash) => {
-                if(err) return res.json({error:'Hash failed.'});
-                db.users.set(userId, {username, hash});
-            })
-        })
-
+       
     });
     
 });
@@ -191,6 +180,11 @@ app.get("/chat", function(req, res){
         res.status(401).send();
         
     }
+})
+
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
 })
 
 
