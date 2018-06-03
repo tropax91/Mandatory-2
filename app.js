@@ -139,8 +139,8 @@ app.post('/login', function(req, res) {
 app.post('/register', function(req, res) {
 
     var data = req.body; //bodyParser at work, makes this work
-    var password = req.body.password;
-    console.log(data);
+    var pwd = data.password;
+   // console.log(data);
 
    
     mongo.connect(path, function(err, db) {
@@ -152,11 +152,16 @@ app.post('/register', function(req, res) {
         let collection = db.collection('users'); //insertion, table name
 
         bcrypt.genSalt(saltRounds, function(err, salt) {
-            bcrypt.hash(password, salt, function(err, hash){
+            if(err) throw err;
+            bcrypt.hash(pwd, salt, function(err, hash){
                 if(err) throw err;
 
-                collection.insert(data, function(err, success) {
+                pwd = hash;
+
+                collection.insert({data:data.password, password:pwd}, function(err, success) {
                     console.log(success);
+                    console.log('Hashed the password: ' + pwd);
+                    
                     db.close();
                     
                 });  
