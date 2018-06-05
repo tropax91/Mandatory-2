@@ -8,33 +8,24 @@ $(document).ready(function () {
         var fullname = $("#fullname").val();
         var email = $("#email").val();
         var password = $("#password").val();
-        var passwordMatch = $("#passwordMatch").val();
         var username = $("#username").val();
+        
 
-        if (fullname == "" || email == "" || password == "" || passwordMatch == "" || username == "") {
+        if (fullname == "" || email == "" || password == "" || username == "") {
 
             $('#valid').empty();
             $('#notValid').html('Please fill out all fields!');
-        }
-        
-        if(password !== passwordMatch){
-            $('#valid').empty();
-            $('#notValid').html('Passwords do not match!');
-        }
-        if(fullname.length < 3){
-            $('#notValid').html('Fullname must be at least 3 chars');
+        } 
+        if(username.length < 3) {
+            $('#notValid').html('Username must be at least 3 chars!');
 
-        }
-       
+        }       
         else {
-            console.log('Making sure you are ' + fullname);
-
 
             let data = {
                 fullname: fullname,
                 email: email,
                 password: password,
-                passwordMatch: passwordMatch,
                 username: username
 
             };
@@ -47,15 +38,15 @@ $(document).ready(function () {
                 data: data,
                 success: function (response) {
                     console.log(response.username + response.password + response.fullname + response.email);
+                    document.location.href = "http://localhost:3000/login";
+
 
                 }
             });
 
             $("#valid").html("✔ User Registered! ")
             $('#notValid').empty();
-            response.redirect('/login');
 
-            
             
 
         }

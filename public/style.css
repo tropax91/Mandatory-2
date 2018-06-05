@@ -284,6 +284,7 @@ body {
     border: 2px #e8491d solid;
     padding: 5px;
     width: 400px;
+    background: #f35023;
 
 }
 
@@ -336,4 +337,3 @@ input[type=submit] {
     box-sizing: border-box;
     transition: .3s;
 }
-

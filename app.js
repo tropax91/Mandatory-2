@@ -103,34 +103,40 @@ io.on("connection", function (socket) {
 });
 
 app.post('/login', function(req, res) {
+
+
+ 
+
+
     //findOne returns one document that satisfies the specified query criteria on the collection, in this case 'username'
     //and match it with what ajax sent back.The method returns null if no document is found.
     mongo.connect(path, function(err, db) {
         db.collection('users').findOne({username: req.body.username}, {fullname: 1, email: 1, password: 1,
-        passwordMatch: 1, username: 1}, function(err, user) {
+         username: 1}, function(err, user) {
 
-            if(user === null) {
+            if(user === null) 
                 console.log('User doesn´t exist!')
-                res.redirect('/login');
 
-            }
+                bcrypt.compare(req.body.password, user.password, function(err, result) {
+                    if(err){
+                        return result.status(401).json({message:'Wrong credentials!'});
 
-           else if(user.username === req.body.username && user.password === req.body.password) {
-                console.log("ACCESS GRANTED!");
-
-                userName = user.username;
-                userLoggedIn = true;
-                
-                return res.redirect('/chat')
-            }
-            
-            else {
-                console.log('Username or password do not match');
-                res.redirect('/login');
-
-                
-                
-            }
+                    }
+                    if(user.username === req.body.username) {
+                        console.log("ACCESS GRANTED!");
+        
+                        userName = user.username;
+                        userLoggedIn = true;
+                        
+                        return res.redirect('/chat');
+                    }
+                    
+                    else {
+                        console.log('Username or password do not match');
+                       // res.redirect('/login');
+                    }
+                   
+                })           
         });
     });
 });
@@ -138,8 +144,8 @@ app.post('/login', function(req, res) {
 //Registration
 app.post('/register', function(req, res) {
 
-    var data = req.body; //bodyParser at work, makes this work
-    var pwd = data.password;
+    let data = req.body; //bodyParser at work, makes this work
+    let pwd = data.password;
    // console.log(data);
 
    
@@ -158,7 +164,11 @@ app.post('/register', function(req, res) {
 
                 pwd = hash;
 
-                collection.insert({data:data.password, password:pwd}, function(err, success) {
+                collection.insert(
+                    {fullname: req.body.fullname,
+                     email: req.body.email,
+                     password: pwd,
+                     username: req.body.username}, function(err, success) {
                     console.log(success);
                     console.log('Hashed the password: ' + pwd);
                     
@@ -167,10 +177,8 @@ app.post('/register', function(req, res) {
                 });  
             });
                 
-        });
-          
-
-       
+        });      
+      
     });
     
 });
@@ -181,10 +189,11 @@ app.get("/chat", function(req, res){
         res.sendFile(__dirname + "/public/chat.html");
     }
     else{
-        console.log('Log in to access this page.');
-        res.status(401).send();
+        console.log('Login to access this page.');
+        res.sendFile(__dirname + "/public/404.html");
         
     }
+    
 })
 
 app.get('/logout', function(req, res) {
